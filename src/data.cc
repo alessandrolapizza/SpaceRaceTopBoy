@@ -17,8 +17,8 @@ int Data::init()
     bmp_.setSampling(Adafruit_BMP280::MODE_NORMAL,
                      Adafruit_BMP280::SAMPLING_NONE,
                      Adafruit_BMP280::SAMPLING_X16,
-                     Adafruit_BMP280::FILTER_OFF,
-                     Adafruit_BMP280::STANDBY_MS_1);
+                     Adafruit_BMP280::BMP_FILTER,
+                     Adafruit_BMP280::BMP_STANDBY_MS);
     delay(50); // Délai pour stabiliser le capteur (?)
     return OK;
 
@@ -33,10 +33,14 @@ int Data::init()
 
 void Data::setReferenceAltitude()
 {
+    for (int i = 0; i < ALTITUDE_MEASURES_NUMBER; i++)
+    {
+        altitudeMeasures_[i] = getAltitude_();
+        delay(BMP_MEASURE_DELAY);
+    }
 
 }
 
 void Data::update()
 {
-    
 }
