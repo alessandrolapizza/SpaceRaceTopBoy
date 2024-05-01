@@ -3,19 +3,30 @@
 
 #include <Adafruit_BMP280.h>
 
-enum Status
+enum States
 {
-    OK = 0,
-    ERROR = 1,
+    FIRST = 0,
+    SECOND = 1,
 };
 
-#define BMP_ADDRESS 0x77 // Changer
-#define BMP_MEASURE_DELAY 1 // Changer
-#define BMP_FILTER FILTER_OFF // Changer
-#define BMP_STANDBY_MS STANDBY_MS_1 // Changer Meme cgose que measure delay ???
+enum Status
+{
+    ERROR = 0,
+    OK = 1,
+};
 
-#define ALTITUDE_MEASURES_NUMBER 500 // Changer
+// BMP280 //
 
-#define BUZZER_PIN 8 // Changer
+#define BMP_ADDRESS 0x76
+#define BMP_FILTER FILTER_X8
+#define BMP_STANDBY_MS STANDBY_MS_1
+#define BMP_SAMPLING SAMPLING_X16
+#define SEA_LEVEL_HPA 1013.25
+#define ALTITUDE_MEASURES_NUMBER 25
+#define BMP_MEASURES_DELAY 40
+
+// Pins Setup //
+
+#define BUZZER_PIN 23
 
 #endif // CONSTANTS_H

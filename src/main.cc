@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Adafruit_BMP280.h>
-//#include <Time.h>
+// #include <Time.h>
 
 #include "constants.h"
 #include "data.h"
@@ -19,47 +19,39 @@ void setup()
   // Init pin. buzzer
   pinMode(BUZZER_PIN, OUTPUT);
 
-  // Init. barometer and imu and sd card
-  if (data.init() == ERROR)
-  {
-    setupFailed();
-  }
-  else
+  // Init. barometer (and imu) and sd card and set ref. altitude
+  if (data.init())
   {
     setupSuccess();
   }
+  else
+  {
+    setupFailed();
+  }
 
-  // Setup altitude ref.
-  data.setReferenceAltitude();
-
-  // Init clock ?
-
-  // Buzzer setup complete
+  // Serial.begin(9600);
 }
 
 void loop()
 {
   // Update sensors
+  data.update();
 
   // Write to SD Data
 
   // Check conditions to update state and do actions of states
+
+  delay(BMP_MEASURES_DELAY);
 }
 
 void setupFailed() // Changer pattern
 {
-  while (true)
-  {
-    digitalWrite(BUZZER_PIN, HIGH);
-    delay(100);
-    digitalWrite(BUZZER_PIN, LOW);
-    delay(100);
-  }
+  tone(BUZZER_PIN, 3000, 1000);
 }
 
 void setupSuccess() // Changer pattern
 {
-  digitalWrite(BUZZER_PIN, HIGH);
-  delay(1000);
-  digitalWrite(BUZZER_PIN, LOW);
+  tone(BUZZER_PIN, 3000, 1000);
+  delay(1500);
+  tone(BUZZER_PIN, 3000, 1000);
 }

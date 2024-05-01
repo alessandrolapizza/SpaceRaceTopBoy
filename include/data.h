@@ -6,8 +6,8 @@
 
 struct AltitudeMeasure
 {
-    double altitude;
-    time_t time;
+    unsigned long time;
+    double value;
 };
 
 class Data
@@ -15,14 +15,18 @@ class Data
 public:
     Data(Adafruit_BMP280 &bmp);
     int init();
-    void setReferenceAltitude();
     void update();
 
 private:
     Adafruit_BMP280 &bmp_;
     double referenceAltitude_;
+    AltitudeMeasure altitudeMeasures_[ALTITUDE_MEASURES_NUMBER];
+    AltitudeMeasure altitude_;
+    int measuredAltitudes_;
     double getAltitude_();
-    double altitudeMeasures_[ALTITUDE_MEASURES_NUMBER];
+    void setReferenceAltitude_();
+    int initBMP280_();
+    void updateAltitude_(bool referenceAltitude = false);
 };
 
 #endif // DATA_H
