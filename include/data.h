@@ -24,7 +24,7 @@ private:
     int measuredAltitudes_; //Nombre d'altitudes mesurées dans le tableau altitudeMeasures_
     Sensors sensors_;
     void setReferenceAltitude_();
-    void updateAltitude_(bool referenceAltitude = false);
+    void updateAltitude_(bool referenceAltitude);
 };
 
 #endif // DATA_H

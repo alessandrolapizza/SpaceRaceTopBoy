@@ -31,6 +31,6 @@ enum Status
 
 // Pins Setup //
 
-#define BUZZER_PIN 23
+#define BUZZER_PIN 2
 
 #endif // CONSTANTS_H

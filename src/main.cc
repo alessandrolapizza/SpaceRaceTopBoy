@@ -15,9 +15,8 @@ void setup()
   pinMode(BUZZER_PIN, OUTPUT);
 
   // Init. barometer (and imu) and sd card and set ref. altitude
-
+  Serial.begin(9600);
   control.init();
-  // Serial.begin(9600);
 }
 
 void loop()

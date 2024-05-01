@@ -8,9 +8,10 @@ bool Data::init()
     {
         return ERROR;
     }
-    return OK;
 
     setReferenceAltitude_();
+
+    return OK;
 }
 
 void Data::setReferenceAltitude_()
@@ -56,5 +57,9 @@ void Data::update()
     if (measuredAltitudes_ == ALTITUDE_MEASURES_NUMBER)
     {
         updateAltitude_();
+        Serial.println(altitude_.value);
+        Serial.println(altitude_.time);
     }
+
+    delay(BMP_MEASURES_DELAY);
 }
