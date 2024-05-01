@@ -9,9 +9,11 @@ void setupFailed();  // Changer pattern
 void setupSuccess(); // Changer pattern
 
 // Instance du bmp280 et de l'accéléromètre
-Adafruit_BMP280 bmp;
+static Adafruit_BMP280 bmp;
 //...
-Data data(bmp); // Ajouter le deucieme sensor ici
+static Data data(bmp); // Ajouter le deucieme sensor ici
+
+static int state = FIRST;
 
 void setup()
 {
@@ -40,6 +42,16 @@ void loop()
   // Write to SD Data
 
   // Check conditions to update state and do actions of states
+
+  switch (state)
+  {
+  case FIRST:
+    break;
+  case SECOND:
+    break;
+  default:
+    break;
+  }
 
   delay(BMP_MEASURES_DELAY);
 }
