@@ -11,9 +11,13 @@ enum States
 
 enum Status
 {
-    ERROR = 0,
-    OK = 1,
+    ERROR = false,
+    OK = true,
 };
+
+// Sensors //
+
+#define SETUP_WAIT_DELAY 500
 
 // BMP280 //
 

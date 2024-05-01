@@ -3,6 +3,7 @@
 
 #include <Adafruit_BMP280.h>
 #include "constants.h"
+#include "sensors.h"
 
 struct AltitudeMeasure
 {
@@ -13,19 +14,16 @@ struct AltitudeMeasure
 class Data
 {
 public:
-    Data(Adafruit_BMP280 &bmp);
-    int init();
+    bool init();
     void update();
 
 private:
-    Adafruit_BMP280 &bmp_;
     double referenceAltitude_;
     AltitudeMeasure altitudeMeasures_[ALTITUDE_MEASURES_NUMBER];
-    AltitudeMeasure altitude_;
-    int measuredAltitudes_;
-    double getAltitude_();
+    AltitudeMeasure altitude_; //Derniere altitude moyennée
+    int measuredAltitudes_; //Nombre d'altitudes mesurées dans le tableau altitudeMeasures_
+    Sensors sensors_;
     void setReferenceAltitude_();
-    int initBMP280_();
     void updateAltitude_(bool referenceAltitude = false);
 };
 
