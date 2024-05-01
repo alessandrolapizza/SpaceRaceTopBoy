@@ -13,6 +13,7 @@ void setup()
   // Init. sensors
   // Init pin. buzzer
   pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(SECOND_EVENT_PIN, OUTPUT);
 
   // Init. barometer (and imu) and sd card and set ref. altitude
   Serial.begin(9600);

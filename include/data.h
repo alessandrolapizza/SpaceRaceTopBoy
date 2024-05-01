@@ -16,6 +16,8 @@ class Data
 public:
     bool init();
     void update();
+    bool postApogee();
+    AltitudeMeasure altitude();
 
 private:
     double referenceAltitude_;
@@ -23,6 +25,7 @@ private:
     AltitudeMeasure altitude_; //Derniere altitude moyennée
     int measuredAltitudes_; //Nombre d'altitudes mesurées dans le tableau altitudeMeasures_
     Sensors sensors_;
+    AltitudeMeasure fifoAltitudeMeasures_[FIFO_ALTITUDE_MEASURES_NUMBER];
     void setReferenceAltitude_();
     void updateAltitude_(bool referenceAltitude);
 };

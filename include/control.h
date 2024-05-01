@@ -11,8 +11,10 @@ public:
 
 private:
     Data data_;
+    int state_ = FIRST;
     void setupFailed_();
     void setupSuccess_();
+    void secondEvent_();
 };
 
 #endif

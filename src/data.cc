@@ -41,6 +41,14 @@ void Data::updateAltitude_(bool referenceAltitude = false)
     }
     else
     {
+        for (int i = FIFO_ALTITUDE_MEASURES_NUMBER - 1; i > 0; i--)
+        {
+            fifoAltitudeMeasures_[i].value = fifoAltitudeMeasures_[i - 1].value;
+            fifoAltitudeMeasures_[i].time = fifoAltitudeMeasures_[i - 1].time;
+        }
+        fifoAltitudeMeasures_[0].value = altitude_.value;
+        fifoAltitudeMeasures_[0].time = altitude_.time;
+
         altitude_.value = altitudeValue - referenceAltitude_;
         altitude_.time = millis();
     }
@@ -62,4 +70,21 @@ void Data::update()
     }
 
     delay(BMP_MEASURES_DELAY);
+}
+
+bool Data::postApogee()
+{
+    for (int i = 0; i < FIFO_ALTITUDE_MEASURES_NUMBER; i++)
+    {
+        if (altitude_.value >= fifoAltitudeMeasures_[i].value)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+AltitudeMeasure Data::altitude()
+{
+    return altitude_;
 }

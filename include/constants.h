@@ -7,6 +7,7 @@ enum States
 {
     FIRST = 0,
     SECOND = 1,
+    THIRD = 2,
 };
 
 enum Status
@@ -14,6 +15,16 @@ enum Status
     ERROR = false,
     OK = true,
 };
+
+// Pins Setup //
+
+#define BUZZER_PIN 2
+#define SECOND_EVENT_PIN 13
+
+// Data //
+
+#define FIFO_ALTITUDE_MEASURES_NUMBER 3
+#define SECOND_EVENT_ALTITUDE 2
 
 // Sensors //
 
@@ -28,9 +39,5 @@ enum Status
 #define SEA_LEVEL_HPA 1013.25
 #define ALTITUDE_MEASURES_NUMBER 25
 #define BMP_MEASURES_DELAY 40
-
-// Pins Setup //
-
-#define BUZZER_PIN 2
 
 #endif // CONSTANTS_H

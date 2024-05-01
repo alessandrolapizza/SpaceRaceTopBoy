@@ -9,7 +9,7 @@ void Control::init()
     }
     else
     {
-        setupFailed_(); //Code will continue to run, but the user will be notified of the error. Restart teensy.
+        setupFailed_(); // Code will continue to run, but the user will be notified of the error. Restart teensy.
     }
 }
 
@@ -28,4 +28,30 @@ void Control::setupSuccess_() // Changer pattern
 void Control::update()
 {
     data_.update();
+
+    switch (state_)
+    {
+    case FIRST:
+        if (data_.postApogee())
+        {
+            state_ = SECOND;
+        }
+        break;
+    case SECOND:
+        if (data_.altitude().value <= SECOND_EVENT_ALTITUDE)
+        {
+            secondEvent_();
+            state_ = THIRD;
+        }
+        break;
+    case THIRD:
+        break;
+    default:
+        break;
+    }
+}
+
+void Control::secondEvent_()
+{
+    digitalWrite(SECOND_EVENT_PIN, HIGH);
 }
