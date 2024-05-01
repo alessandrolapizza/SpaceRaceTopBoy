@@ -32,19 +32,25 @@ void Control::update()
     switch (state_)
     {
     case FIRST:
-        if (data_.postApogee())
+        if (data_.altitude().value >= ALTITUDE_SECURITY_TRESHOLD)
         {
             state_ = SECOND;
         }
         break;
     case SECOND:
-        if (data_.altitude().value <= SECOND_EVENT_ALTITUDE)
+        if (data_.postApogee())
         {
-            secondEvent_();
             state_ = THIRD;
         }
         break;
     case THIRD:
+        if (data_.altitude().value <= SECOND_EVENT_ALTITUDE)
+        {
+            secondEvent_();
+            state_ = FOURTH;
+        }
+        break;
+    case FOURTH:
         break;
     default:
         break;

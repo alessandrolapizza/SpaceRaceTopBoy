@@ -8,6 +8,7 @@ enum States
     FIRST = 0,
     SECOND = 1,
     THIRD = 2,
+    FOURTH = 3,
 };
 
 enum Status
@@ -25,6 +26,7 @@ enum Status
 
 #define FIFO_ALTITUDE_MEASURES_NUMBER 3
 #define SECOND_EVENT_ALTITUDE 2
+#define ALTITUDE_SECURITY_TRESHOLD 2
 
 // Sensors //
 
@@ -37,7 +39,7 @@ enum Status
 #define BMP_STANDBY_MS STANDBY_MS_1
 #define BMP_SAMPLING SAMPLING_X16
 #define SEA_LEVEL_HPA 1013.25
-#define ALTITUDE_MEASURES_NUMBER 25
+#define ALTITUDE_MEASURES_NUMBER 5
 #define BMP_MEASURES_DELAY 40
 
 #endif // CONSTANTS_H
