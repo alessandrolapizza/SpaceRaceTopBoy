@@ -6,10 +6,16 @@ void Control::init()
     if (data_.init())
     {
         setupSuccess_();
+        data_.log("Setup successful with following parameters:");
+        data_.logConfig();
     }
     else
     {
-        setupFailed_(); // Code will continue to run, but the user will be notified of the error. Restart teensy.
+        setupFailed_();
+        data_.log("Setup failed.");
+        while (true)
+        {
+        }
     }
 }
 
@@ -35,6 +41,7 @@ void Control::update()
         if (data_.altitude().value >= ALTITUDE_SECURITY_TRESHOLD)
         {
             state_ = SECOND;
+            data_.log("Altitude security treshold passed.");
         }
         break;
     case SECOND:
@@ -60,4 +67,5 @@ void Control::update()
 void Control::secondEvent_()
 {
     digitalWrite(SECOND_EVENT_PIN, HIGH);
+    data_.log("Second event triggered.");
 }

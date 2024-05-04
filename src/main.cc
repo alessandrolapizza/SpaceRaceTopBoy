@@ -16,7 +16,7 @@ void setup()
   pinMode(SECOND_EVENT_PIN, OUTPUT);
 
   // Init. barometer (and imu) and sd card and set ref. altitude
-  Serial.begin(9600);
+  Serial.begin(9600); //enlever
   control.init();
 }
 

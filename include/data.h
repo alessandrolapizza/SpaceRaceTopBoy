@@ -18,16 +18,23 @@ public:
     void update();
     bool postApogee();
     AltitudeMeasure altitude();
+    void log(String log);
+    void logConfig();
 
 private:
     double referenceAltitude_;
     AltitudeMeasure altitudeMeasures_[ALTITUDE_MEASURES_NUMBER];
-    AltitudeMeasure altitude_; //Derniere altitude moyennée
-    int measuredAltitudes_; //Nombre d'altitudes mesurées dans le tableau altitudeMeasures_
+    AltitudeMeasure altitude_; // Derniere altitude moyennée
+    int measuredAltitudes_;    // Nombre d'altitudes mesurées dans le tableau altitudeMeasures_
     Sensors sensors_;
     AltitudeMeasure fifoAltitudeMeasures_[FIFO_ALTITUDE_MEASURES_NUMBER];
+    String dataFile_;
+    String logFile_;
+    bool initSD_();
     void setReferenceAltitude_();
-    void updateAltitude_(bool referenceAltitude);
+    void updateAltitude_(bool referenceAltitude = false);
+    String createFileName_(bool isData = true);
+    void logData_();
 };
 
 #endif // DATA_H

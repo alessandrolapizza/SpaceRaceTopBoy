@@ -5,9 +5,9 @@ bool Sensors::init()
 {
     if (initBMP280_())
     {
-        return ERROR;
+        return OK;
     }
-    return OK;
+    return ERROR;
 }
 
 bool Sensors::initBMP280_()
