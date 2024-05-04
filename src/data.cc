@@ -16,7 +16,8 @@ bool Data::init()
     return OK;
 }
 
-void Data::logConfig(){
+void Data::logConfig()
+{
     log("Reference altitude: " + String(referenceAltitude_) + "m");
     log("Altitude security treshold: " + String(ALTITUDE_SECURITY_TRESHOLD) + "m");
     log("Second event altitude: " + String(SECOND_EVENT_ALTITUDE) + "m");
@@ -26,7 +27,8 @@ void Data::logConfig(){
     log("Setup delay: " + String(SETUP_WAIT_DELAY) + "ms");
 }
 
-void Data::log(String log){
+void Data::log(String log)
+{
     File myFile;
     myFile = SD.open(logFile_.c_str(), FILE_WRITE);
     myFile.println((("[" + String(millis()) + "] " + log)));
@@ -137,7 +139,10 @@ void Data::logData_()
 {
     File myFile;
     myFile = SD.open(dataFile_.c_str(), FILE_WRITE);
-    myFile.println(altitudeMeasures_[measuredAltitudes_].time + ", " + String(altitudeMeasures_[measuredAltitudes_].value) + ", " + String(altitude_.value));
+    myFile.println(String(altitudeMeasures_[measuredAltitudes_].time) + ", " +
+                   String(altitudeMeasures_[measuredAltitudes_].value -
+                          referenceAltitude_) +
+                   ", " + String(altitude_.value));
     myFile.close();
 }
 
